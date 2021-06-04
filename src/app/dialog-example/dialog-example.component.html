@@ -1,0 +1,75 @@
+<H1
+  ><i class="fas fa-user-plus"></i> Add Company Staff for Castorama France
+  SASS</H1
+>
+<hr />
+<form class="example-form" #myForm="ngForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      placeholder="Email*"
+      name="email"
+      [(ngModel)]="mentorObj.email"
+    />
+  </mat-form-field>
+
+  <div class="wrapper">
+    <div class="radio-b">
+      <label>Civility </label>
+      <mat-radio-group name="civility" [(ngModel)]="mentorObj.civility">
+        <mat-radio-button value="Mr" class="auto">Mr</mat-radio-button>
+        <mat-radio-button value="Mrs" class="always">Mrs</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        placeholder="First Name*"
+        name="first_name"
+        [(ngModel)]="mentorObj.first_name"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        placeholder="Last Name"
+        name="last_name"
+        [(ngModel)]="mentorObj.last_name"
+      />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select name="company" [(ngModel)]="mentorObj.company">
+      <mat-option value="HR">HR</mat-option>
+      <mat-option value="Mentor">Mentor</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="submit-button">
+    <button mat-raised-button color="warn">Cancel</button>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="addMentor(myForm.value)"
+      *ngIf="!isEdit"
+    >
+      Submit
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="warn"
+      (click)="updateMentor()"
+      *ngIf="isEdit"
+    >
+      Update
+    </button>
+  </div>
+</form>
