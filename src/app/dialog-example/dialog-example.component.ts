@@ -15,7 +15,7 @@ export class DialogExampleComponent implements OnInit {
     private commonService: CommonService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log('contructor', data);
+    console.log('constructor', data);
   }
 
   mentorObj = this.data.data;

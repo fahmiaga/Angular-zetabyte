@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
     let mentorObj = {
       data: [],
       isEdit: false,
+      datas: this.getLatestUser(),
     };
 
     const dialogConfig = new MatDialogConfig();
@@ -103,8 +104,9 @@ export class AppComponent implements OnInit {
   }
 
   getLatestUser() {
-    this.commonService.getAllMentors().subscribe((res) => {
+    this.commonService.getAllMentors().subscribe((res: any) => {
       this.allMentors = res;
+      this.dataSource = new MatTableDataSource(res);
     });
   }
 
