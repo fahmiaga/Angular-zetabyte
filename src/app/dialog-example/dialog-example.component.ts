@@ -22,32 +22,32 @@ export class DialogExampleComponent implements OnInit {
   isEdit = this.data.isEdit;
 
   ngOnInit(): void {
-    this.getLatestUser();
+    // this.getLatestUser();
   }
 
   addMentor(formObj: any[]) {
     console.log(formObj);
     this.commonService.createMentor(formObj).subscribe((res) => {
-      this.getLatestUser();
+      // this.getLatestUser();
       Swal.fire('Success!', 'Your Data Have Been Added.', 'success');
     });
   }
-  getLatestUser() {
-    this.commonService.getAllMentors().subscribe((res) => {
-      this.allMentors = res;
-    });
-  }
+  // getLatestUser() {
+  //   this.commonService.getAllMentors().subscribe((res) => {
+  //     this.allMentors = res;
+  //   });
+  // }
 
-  deleteMentor(user: any) {
-    this.commonService.deleteMentor(user).subscribe(() => {
-      this.getLatestUser();
-    });
-  }
+  // deleteMentor(user: any) {
+  //   this.commonService.deleteMentor(user).subscribe(() => {
+  // this.getLatestUser();
+  //   });
+  // }
 
   updateMentor() {
     this.isEdit = !this.isEdit;
     this.commonService.updateMentor(this.mentorObj).subscribe(() => {
-      this.getLatestUser();
+      // this.getLatestUser();
       Swal.fire('Success!', 'Your Data Have Been Updated.', 'success');
     });
   }

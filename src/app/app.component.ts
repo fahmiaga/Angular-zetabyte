@@ -25,27 +25,21 @@ export interface PeriodicElement {
 export class AppComponent implements OnInit {
   dataSource: any;
   search: any;
-  // @ViewChild('paginator') paginator: MatPaginator | undefined;
+  allMentors: Object = {};
 
   @ViewChild(MatPaginator) paginator: any;
 
-  constructor(public dialog: MatDialog, private commonService: CommonService) {}
-
-  // ngAfterViewInit() {
-  //   this.paginator = MatPaginator;
-  //   console.log('-->', this.dataSource);
-  //   this.dataSource.paginator = this.paginator;
-  // }
+  constructor(private commonService: CommonService, public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.getLatestUser();
     this.paginator = MatPaginator;
 
     this.commonService.getAllMentors().subscribe((res: any) => {
       this.dataSource = new MatTableDataSource(res);
     });
-    // this.dialogComp.getLatestUser();
-    // this.dataSource.paginator = this.paginator;
-    console.log(this.paginator);
+
+    this.dataSource.paginator = this.paginator;
   }
 
   displayedColumns: string[] = [
@@ -94,7 +88,7 @@ export class AppComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.commonService.deleteMentor(user).subscribe(() => {
-          // this.dialogComp.getLatestUser();
+          this.getLatestUser();
         });
 
         Swal.fire(
@@ -105,6 +99,12 @@ export class AppComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
       }
+    });
+  }
+
+  getLatestUser() {
+    this.commonService.getAllMentors().subscribe((res) => {
+      this.allMentors = res;
     });
   }
 
